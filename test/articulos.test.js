@@ -2,7 +2,7 @@ const request = require('supertest')
 const app = require('../index')
 
 describe('Articulos Endpoints', () => {
-    var token = "";
+    var token;
 
     beforeAll((done) => {
         request(app)
@@ -10,6 +10,7 @@ describe('Articulos Endpoints', () => {
             .send({
                 email: 'prueba@gmail.com',
                 password: 'micontraseña',
+
             })
             .end((err, response) => {
                 var result = JSON.parse(response.text);
@@ -20,8 +21,8 @@ describe('Articulos Endpoints', () => {
     });
     it('listas de articulos', async() => {
         const res = await request(app)
-            .get('/api/articulo/list');
-        expect(res.statusCode).toEqual(200);
+            .get('/api/articulo/list')
+        expect(res.statusCode).toEqual(200)
 
     })
 
