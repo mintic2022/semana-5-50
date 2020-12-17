@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     estado: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Usuario',
+    modelName: 'Usuarios',
   });
   return Usuario;
 };

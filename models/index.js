@@ -33,5 +33,9 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+//Se agrega cada modelo a la base de datos 'db'
+db.Usuario = require('./usuario')(sequelize, Sequelize);
+db.Categoria = require('./categoria')(sequelize, Sequelize);
+db.Articulo = require('./articulo')(sequelize, Sequelize);
 
 module.exports = db;

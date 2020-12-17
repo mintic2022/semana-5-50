@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const categoriaController = require('../../controllers/categoriaControler');
+const categoriaController = require('../../controllers/categoriaController');
 const auth = require('../../middlewares/auth');
 
 router.get('/list', auth.verifyAlmacenero, categoriaController.list); // .com/api/categoria/list

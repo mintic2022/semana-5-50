@@ -1,16 +1,17 @@
 //Middleware de autenticacion;
-const tokenServ = require('../services/token');
+const tokenReturn = require('../services/token');
 
 module.exports = {
 
     // Requerimiento
     verificarAdministrador: async(req, res, next) =>{
+        console.log(req.headers.token);
         if(!req.headers.token){
             return res.status(404).send({
                 message: 'ADMIN TOKEN NOT FOUND!'
             })
         }else{
-            const response = await tokenServ.decode(req.headers.token);
+            const response = await tokenReturn.decode(req.headers.token);
             if (response.rol === "Administrador"){
                 next();
             }else
@@ -27,7 +28,7 @@ module.exports = {
                 message: 'SELLER TOKEN NOT FOUND!'
             })
         }else{
-            const response = await tokenServ.decode(req.headers.token);
+            const response = await tokenReturn.decode(req.headers.token);
             if (response.rol === "Administrador" || response.rol === "Vendedor"){
                 next();
             }else
@@ -44,7 +45,7 @@ module.exports = {
                 message: 'STORER TOKEN NOT FOUND'
             });
         }
-        const response = await tokenService.decode(req.headers.token);
+        const response = await tokenReturn.decode(req.headers.token);
         if (response.rol == 'Administrador' || response.rol == 'Almacenero') {
             next();
         } else {

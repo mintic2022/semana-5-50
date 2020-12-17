@@ -15,8 +15,7 @@ exports.list = async(req, res, next) =>{
 
 exports.add = async (req, res, next) =>{
     try {
-        const catExiste = await db.Categoria.findOne({where: {name: req.body.name}}) //verificoi si la categoria ya existe antes de crearla
-        console.log(user);
+        const catExiste = await db.Categoria.findOne({where: {nombre: req.body.nombre}}) //verificoi si la categoria ya existe antes de crearla
         if (!catExiste){
             const registro = await db.Categoria.create(req.body);
             res.status(200).json(registro); //requerimiento
