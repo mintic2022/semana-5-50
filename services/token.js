@@ -12,7 +12,7 @@ const checkToken = async (token) =>{
     }
     const user = await models.Usuario.findOne({where:{
         id: localID,
-        estado: 1
+        // estado: 1
     }});
     if (user){
         const token = encode(user);
@@ -43,7 +43,7 @@ module.exports = {
             const { id } = await jwt.verify(token, 'config.secret');
             const user  = await models.Usuario.findOne({where:{
                 id: id,
-                estado: 1
+                // estado: 1
             }});
             if (user){
                 return user
