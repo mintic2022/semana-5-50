@@ -1,9 +1,10 @@
 {
     "development": {
-        "username": "root",
-        "password": null,
-        "database": "proyectof_s4",
-        "host": "127.0.0.1",
+        "username": "bpEJizof7o",
+        "password": "C6P9AvwtQi",
+        "database": "bpEJizof7o",
+        "host": "remotemysql.com",
+        "port": "3306",
         "dialect": "mysql"
     },
     "test": {
@@ -11,7 +12,11 @@
         "storage": "./database.sqlite3"
     },
     "production": {
-        "dialect": "sqlite",
-        "storage": "./database.sqlite3"
+        "username": "bpEJizof7o",
+        "password": "C6P9AvwtQi",
+        "database": "bpEJizof7o",
+        "host": "remotemysql.com",
+        "port": "3306",
+        "dialect": "mysql"
     }
 }
