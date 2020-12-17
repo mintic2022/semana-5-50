@@ -26,7 +26,8 @@ exports.add = async (req, res, next) =>{
             })
         }
     } catch (error) {
-        
+        res.status(500).send({message: 'error !!!'})
+        next(error);
     }
 };
 
@@ -40,21 +41,18 @@ exports.update = async(req, res, next) =>{
             });
             res.status(200).json(register); //requerimiento
     } catch (error) {
-        res.status(500)
+        res.status(500);
+        next(error);
     }
 }
 
 exports.activate = async(req, res, next) =>{
     try {
-        const register = await db.Categoria.update({estado: 1},
-            {
-                where: {
-                    id: req.body.id
-                }
-            });
-            res.status(200).json(register); //requerimiento
+        const register = await db.Categoria.update({ estado: 1}, { where: { id: req.body.id } })
+        res.status(200).json(register); //requerimiento
     } catch (error) {
         res.status(500)
+        next(error);
     }
 }
 
@@ -68,6 +66,7 @@ exports.deactivate = async(req, res, next) =>{
             });
             res.status(200).json(register); //requerimiento
     } catch (error) {
-        res.status(500)
+        res.status(500);
+        next(error);
     }
 }

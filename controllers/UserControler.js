@@ -4,13 +4,16 @@ const tokenServ = require('../services/token');
 
 exports.login = async (req, res, next) =>{
     try {
-        console.log(req.body.email);
         const user = await db.Usuario.findOne({where: {email: req.body.email}})
         if (user){
             const pass = bcrypt.compareSync(req.body.password, user.password)
             if (pass){
                 const tokenReturn = await tokenServ.encode(user);
                 res.status(200).json({ user, tokenReturn });
+                // var test = res.json( tokenReturn );
+                // res.status(200).test;
+                // console.log(test.text);
+                // //console.log(test.tokenReturn);
             }
             else{
                 //requerimiento
