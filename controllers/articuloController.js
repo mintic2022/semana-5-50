@@ -2,8 +2,9 @@ const db = require('../models');
 
 exports.list = async(req, res, next) =>{
     try {
-        const elemento = await db.Articulo.findAll();//{ where: {estado: 1}}); para filtrar las activas unicamente
-        // { include: [ { model: db.Categoria, as: 'categoria', attributes: ["id", "nombre", "descripcion"] } ] } 
+        const elemento = await db.Articulo.findAll({
+            // include: [ { model: db.Categoria, as: 'categoria', attributes: ["id", "nombre", "descripcion"] } ]
+        });//{ where: {estado: 1}}); para filtrar las activas unicamente
         if (elemento)
             res.status(200).json(elemento); //requerimiento
         else
@@ -16,8 +17,8 @@ exports.list = async(req, res, next) =>{
 
 exports.add = async (req, res, next) =>{
     try {
-        const catExiste = await db.Articulo.findOne({where: {nombre: req.body.nombre}}) //verificoi si la Articulo ya existe antes de crearla
-        if (!catExiste){
+        const artExiste = await db.Articulo.findOne({where: {nombre: req.body.nombre}}) //verificoi si la Articulo ya existe antes de crearla
+        if (!artExiste){
             const registro = await db.Articulo.create(req.body);
             res.status(200).json(registro); //requerimiento
         }

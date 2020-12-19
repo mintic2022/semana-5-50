@@ -37,5 +37,6 @@ db.Sequelize = Sequelize;
 db.Usuario = require('./usuario')(sequelize, Sequelize);
 db.Categoria = require('./categoria')(sequelize, Sequelize);
 db.Articulo = require('./articulo')(sequelize, Sequelize);
+// db.Categoria.hasMany(db.Articulo);
 
 module.exports = db;
