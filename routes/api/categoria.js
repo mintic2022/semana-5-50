@@ -1,5 +1,4 @@
 const router = require('express').Router();
-
 const categoriaController = require('../../controllers/categoriaController');
 const auth = require('../../middlewares/auth');
 

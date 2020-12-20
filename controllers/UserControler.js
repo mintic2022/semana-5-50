@@ -1,6 +1,7 @@
 const db = require('../models');
 var bcrypt = require('bcryptjs');
 const tokenServ = require('../services/token');
+const { OPEN_READWRITE } = require('sqlite3');
 
 exports.login = async (req, res, next) =>{
     try {
@@ -30,24 +31,77 @@ exports.login = async (req, res, next) =>{
         next(error);
     }
 }
+        
+exports.list = async(req, res, next) =>{
+    try {
+        const user = await db.Usuario.findAll();
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).send({message: 'INTERNAL SERVER ERROR'});
+        next(error);
+    }
+}
 
-// exports.register = async(req, res, next) =>{
-//     try {
-//         req.body.password = await bcrypt.hashSync(req.body.password, 10);
-//         const user = await db.Usuario.create(req.body);
-//         response.status(200).json(user);
-//     } catch (error) {
-//         res.status(500).send({message: 'INTERNAL SERVER ERROR'});
-//         next(error);
-//     }
-// }
+exports.add = async (req, res, next) =>{
+    try {
+        const userExiste = await db.Usuario.findOne({where: {nombre: req.body.nombre}}) //verifico si el Usuario ya existe antes de crearlo
+        if (!userExiste){
+            req.body.password = await bcrypt.hashSync(req.body.password, 10);
+            const registro = await db.Usuario.create(req.body);
+            res.status(200).json(registro); //requerimiento
+        }
+        else{
+            res.status(404).json({ 
+                error: 'Error el Usuario ya existe'
+            })
+        }
+    } catch (error) {
+    res.status(500).send({message: 'INTERNAL ERROR'})
+    next(error);
+    }
+}
 
-// exports.list = async(req, res, next) =>{
-//     try {
-//         const user = await db.Usuario.findAll();
-//         res.status(200).json(user);
-//     } catch (error) {
-//         res.status(500).send({message: 'INTERNAL SERVER ERROR'});
-//         next(error);
-//     }
-// }
+exports.update = async(req, res, next) =>{
+    try {
+        const register = await db.Usuario.update({
+            rol: req.body.rol,
+            nombre: req.body.nombre,
+            password: req.body.password,
+            email: req.body.email,
+            estado: req.body.estado},
+            {
+                where: {
+                    id: req.body.id
+                }
+            });
+            res.status(200).json(register); //requerimiento
+    } catch (error) {
+        res.status(500);
+        next(error);
+    }
+}
+
+exports.activate = async(req, res, next) =>{
+    try {
+        const register = await db.Usuario.update({ estado: 1}, { where: { id: req.body.id } })
+        res.status(200).json(register); //requerimiento
+    } catch (error) {
+        res.status(500)
+        next(error);
+    }
+}
+
+exports.deactivate = async(req, res, next) =>{
+    try {
+        const register = await db.Usuario.update({estado: 0},
+            {
+                where: {
+                    id: req.body.id
+                }
+            });
+            res.status(200).json(register); //requerimiento
+    } catch (error) {
+        res.status(500);
+        next(error);
+    }
+}
