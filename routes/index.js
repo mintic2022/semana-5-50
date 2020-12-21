@@ -1,6 +1,4 @@
-const routerx = require('express-promise-router');
-// const categoriaRouter = require('./articulo');
-const router = routerx();
+const router = require('express').Router();
 
 const apiRouterCategoria = require('./categoria');
 const apiRouterArticulo = require('./articulo');

@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const categoriaController = require('../../controllers/categoriaController');
-const auth = require('../../middlewares/auth');
+const categoriaController = require('../controllers/categoriaController');
+const auth = require('../middlewares/auth');
 
 router.get('/list', categoriaController.list); // .com/api/categoria/list
 router.post('/add', auth.verificarAdministrador, categoriaController.add); // ruta: ***.com/api/categoria/add

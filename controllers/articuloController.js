@@ -29,7 +29,8 @@ exports.add = async (req, res, next) =>{
             })
         }
     } catch (error) {
-        
+        res.status(500).send({message: 'error !!!'});
+        next(error);
     }
 };
 
@@ -49,7 +50,8 @@ exports.update = async(req, res, next) =>{
             });
             res.status(200).json(register);
     } catch (error) {
-        res.status(500)
+        res.status(500).send({message: 'error !!!'});
+        next(error);
     }
 }
 
@@ -63,7 +65,8 @@ exports.activate = async(req, res, next) =>{
             });
             res.status(200).json(register);
     } catch (error) {
-        res.status(500)
+        res.status(500).send({message: 'error !!!'});
+        next(error);
     }
 }
 
@@ -77,6 +80,7 @@ exports.deactivate = async(req, res, next) =>{
             });
             res.status(200).json(register);
     } catch (error) {
-        res.status(500)
+        res.status(500).send({message: 'error !!!'});
+        next(error);
     }
 }

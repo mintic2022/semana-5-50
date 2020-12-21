@@ -4,8 +4,6 @@ const articuloController = require('../controllers/ArticuloController');
 const auth = require('../middlewares/auth');
 const router = routerx();
 
-const articuloController = require('../../controllers/articuloController');
-
 router.get('/list', articuloController.list); // .com/api/articulo/list
 router.post('/add', articuloController.add); // ruta: ***.com/api/articulo/add
 router.put('/update', auth.verificarAdministrador, articuloController.update); // ruta: ***.com/api/articulo/update
