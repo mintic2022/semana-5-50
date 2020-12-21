@@ -1,19 +1,55 @@
 //Middleware de autenticacion;
-const tokenService = require('../services/token');
+const tokenReturn = require('../services/token');
 
 module.exports = {
-    verificarAdministrador: async(req, res, next) => {
+
+    // Requerimiento
+    verificarAdministrador: async(req, res, next) =>{
+        if(!req.headers.token){
+            return res.status(404).send({
+                message: 'ADMIN TOKEN NOT FOUND!'
+            })
+        }else{
+            const response = await tokenReturn.decode(req.headers.token);
+            if (response.rol === "Administrador"){
+                next();
+            }else
+                return res.status(403).send({
+                    message: 'ADMIN NOT AUTHORIZED'
+                })
+        }
+    },
+
+    // Requerimiento
+    verificarVendedor: async(req, res, next) =>{
+        if(!req.headers.token){
+            return res.status(404).send({
+                message: 'SELLER TOKEN NOT FOUND!'
+            })
+        }else{
+            const response = await tokenReturn.decode(req.headers.token);
+            if (response.rol === "Administrador" || response.rol === "Vendedor"){
+                next();
+            }else
+                return res.status(403).send({
+                    message: 'SELLER NOT AUTHORIZED'
+                })
+        }
+    },
+
+    // Requerimiento
+    verificarAlmacenero: async(req, res, next) => {
         if (!req.headers.token) {
             return res.status(404).send({
-                message: 'No token'
+                message: 'STORER TOKEN NOT FOUND'
             });
         }
-        const response = await tokenService.decode(req.headers.token);
-        if (response.rol == 'Administrador' || response.rol == 'Vendedor' || response.rol == 'Almacenero') {
+        const response = await tokenReturn.decode(req.headers.token);
+        if (response.rol == 'Administrador' || response.rol == 'Almacenero') {
             next();
         } else {
             return res.status(403).send({
-                message: 'No autorizado'
+                message: 'STORER NOT AUTHORIZED'
             });
         }
     },
