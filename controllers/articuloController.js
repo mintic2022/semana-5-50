@@ -25,7 +25,7 @@ exports.add = async (req, res, next) =>{
         }
         else{
             res.status(404).json({ 
-                error: 'Error en la Articulo'
+                error: 'El Articulo ya existe'
             })
         }
     } catch (error) {
