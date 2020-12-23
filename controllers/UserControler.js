@@ -5,12 +5,13 @@ const { OPEN_READWRITE } = require('sqlite3');
 
 exports.login = async (req, res, next) =>{
     try {
+        console.log('entra')
         const user = await db.Usuario.findOne({where: {email: req.body.email}})
         if (user){
             const pass = bcrypt.compareSync(req.body.password, user.password)
             if (pass){
-                const tokenReturn = await tokenServ.encode(user);
-                res.status(200).json({ user, tokenReturn });
+                const token = await tokenServ.encode(user);
+                res.status(200).json({ user, token });
             }
             else{
                 //requerimiento
