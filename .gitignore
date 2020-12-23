@@ -1,5 +1,9 @@
 .DS_Store
+<<<<<<< HEAD
+node_modules
+=======
 node_modules/
+>>>>>>> origin/dev
 /dist
 
 
