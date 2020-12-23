@@ -3,6 +3,7 @@ const userController = require('../controllers/UserControler');
 const auth = require('../middlewares/auth');
 
 router.post('/login', userController.login); // ruta: ***.com/api/usuario/login
+router.get('/user' , auth.verificarAdministrador, userController.user);
 router.get('/list', auth.verificarLogin, userController.list); // .com/api/usuario/list
 router.post('/add', auth.verificarAdministrador,userController.add); // ruta: ***.com/api/usuario/add
 router.put('/update', auth.verificarAdministrador, userController.update); // ruta: ***.com/api/usuario/update

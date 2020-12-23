@@ -10,7 +10,7 @@ module.exports = {
                 message: 'TOKEN NOT FOUND!'
             })
         } else {
-
+            req.user = await tokenReturn.decode(req.headers.authorization.split(' ')[1]);           
             next();
         }
     },
@@ -55,7 +55,7 @@ module.exports = {
                 message: 'TOKEN NOT FOUND!'
             })
         } else {
-
+            req.user = await tokenReturn.decode(req.headers.authorization.split(' ')[1]);           
             next();
         }
     },

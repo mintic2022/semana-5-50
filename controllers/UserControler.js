@@ -39,6 +39,17 @@ exports.list = async(req, res, next) =>{
     }
 }
 
+
+exports.user = async (req, res, next) => {
+    try {
+        const user = await db.Usuario.findOne({where: {email: req.user.email}});
+        res.status(200).json({ user });
+    } catch (error) {
+        res.status(500).send({message: 'INTERNAL SERVER ERROR'});
+        next(error);
+    }
+}
+
 exports.add = async (req, res, next) =>{
     try {
         const userExiste = await db.Usuario.findOne({where: {email: req.body.email}}) //verifico si el Usuario ya existe antes de crearlo
