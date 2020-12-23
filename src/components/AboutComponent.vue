@@ -3,10 +3,10 @@
     <v-app id="inspire">
         <br>
          <div class ="mx-5">
-        <h1 class="text-center display-3 font-weight-bold">Nosotros</h1>
+        <h1 class="text-center display-1 font-weight-bold">Nosotros</h1>
         <br />
 
-        <p class="text-md-justify headline font-weight-regular">
+        <p class="text-md-justify display-1 font-weight-regular">
           En busca de nuestro deseo de convertirnos en una comunidad donde de la
           mano de todos generemos empleos y cubramos necesidades en servicios
           especificos nos permite ofrecer una gran variedad laboral a todo
@@ -20,22 +20,24 @@
         </p>
       </div>
       <br>
+       <v-divider class="blue" ></v-divider>
 <v-row>
 
 <v-col class ="mx-5">
-<h4 class="text-center display-2 font-weight-medium">Misión</h4 >
+<h4 class="text-center display-1 font-weight-medium">Misión</h4 >
         <br />
 
-        <p class="text-md-justify headline font-weight-regular">
+        <p class="text-md-justify  display-1  font-weight-regular">
           Potenciar las capacidades laborales de nuestro personal y ofrecer un servicio acorde y a la altura de la labor a realizar y que nuestros clientes se sientan cómodos y satisfechos.
         </p>
 </v-col>
+  <v-divider vertical class="blue"></v-divider>
 
 <v-col class ="mx-5">
-<h4 class="text-center display-2 font-weight-medium">Visión</h4 >
+<h4 class="text-center display-1 font-weight-medium">Visión</h4 >
         <br />
 
-        <p class="text-md-justify headline font-weight-regular">
+        <p class="text-md-justify display-1 font-weight-regular">
           Ser una de las empresas más importantes de Colombia dando soluciones prácticas y objetivas a las necesidades tanto como de nuestro personal como las de nuestros clientes.
         </p>
 </v-col>

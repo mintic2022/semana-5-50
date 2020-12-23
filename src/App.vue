@@ -2,6 +2,9 @@
 
  <v-app >
     <v-banner 
+    contain
+  fluid
+  max-height="200"
      single-line
         :sticky=true
     color="info"
@@ -9,8 +12,9 @@
     >
   
       <v-img
-       
-        height="100"
+       contain
+
+       width="200"
         src="https://colombiatic.mintic.gov.co/679/channels-581_logo_footer_mintic.png"    
       
       >
@@ -41,13 +45,14 @@
          <v-btn
           x-large
           text
+         
         
           color="#FFFFFF"
              :to="{name:'About'}"
         >
          Nosotros
         </v-btn>
-         <v-btn
+         <!-- <v-btn
         x-large
         rounded
           color="#FFFFFF"
@@ -56,7 +61,7 @@
         
         >
           Login
-        </v-btn>
+        </v-btn> -->
       </template>
   </v-banner>
     <v-main>
